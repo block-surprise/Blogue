@@ -3,57 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ログール - 好奇心のログ</title>
+  <title>ブローグ - 好奇心のログ</title>
+  <meta name="description" content="ブローグは、気になることを気ままに記録するブログです。" />
+  <meta property="og:title" content="ブローグ - 好奇心のログ" />
+  <meta property="og:description" content="気になることを気ままに記録するブログ。" />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/" />
   <style>
+    :root {
+      --main-color: #2c3e50;
+      --accent-color: #3498db;
+      --bg-color: #f9f9f9;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f9f9f9;
+      background: var(--bg-color);
       color: #333;
     }
     header {
-      background: #4a90e2;
+      background: var(--main-color);
       color: white;
-      padding: 2rem;
-      text-align: center;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
     }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1rem;
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .search-box {
+      margin-left: 1rem;
+    }
+    .search-box input {
+      padding: 0.4rem;
+      border-radius: 4px;
+      border: none;
     }
     main {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+    .breadcrumbs a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
     .post-list {
-      list-style: none;
-      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
     .post-item {
       background: white;
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+    .post-item img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
     .post-item h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
     }
-    .post-item .meta {
-      font-size: 0.85rem;
+    .meta {
+      font-size: 0.8rem;
       color: #777;
-      margin-bottom: 0.5rem;
     }
-    .post-item a {
+    .tags {
+      margin-top: 0.5rem;
+    }
+    .tag {
+      display: inline-block;
+      background: #e0f0ff;
+      color: #007acc;
+      padding: 0.2rem 0.5rem;
+      margin-right: 0.3rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
       text-decoration: none;
-      color: #4a90e2;
-      font-weight: bold;
     }
     footer {
       text-align: center;
@@ -61,36 +106,62 @@
       color: #aaa;
       margin: 4rem 0 2rem;
     }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 0.5rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>ログール</h1>
-    <p>気になること、気ままに記録。</p>
+    <div class="site-title">ブローグ</div>
+    <nav>
+      <a href="index.html">ホーム</a>
+      <a href="tags.html">タグ</a>
+      <a href="about.html">このブログについて</a>
+      <span class="search-box">
+        <input type="text" placeholder="検索..." />
+      </span>
+    </nav>
   </header>
 
   <main>
-    <ul class="post-list">
-      <li class="post-item">
+    <div class="breadcrumbs">
+      <a href="index.html">ホーム</a> ＞ トップページ
+    </div>
+
+    <section class="post-list">
+      <article class="post-item">
+        <img src="images/minecraft.jpg" alt="ネザーの風景" />
         <h2><a href="posts/minecraft.html">ネザーでネザライト探し</a></h2>
         <div class="meta">2025年12月9日 ｜ マイクラ</div>
+        <div class="tags">
+          <a href="tags/minecraft.html" class="tag">#マイクラ</a>
+          <a href="tags/adventure.html" class="tag">#冒険</a>
+        </div>
         <p>今日はネザーに行って、ネザライトを探してきた記録。ピグリンに注意！</p>
-      </li>
-      <li class="post-item">
+      </article>
+
+      <article class="post-item">
+        <img src="images/google.jpg" alt="検索エンジンのイメージ" />
         <h2><a href="posts/google-search.html">Google検索の裏側</a></h2>
         <div class="meta">2025年12月7日 ｜ テクノロジー</div>
+        <div class="tags">
+          <a href="tags/google.html" class="tag">#Google</a>
+          <a href="tags/search.html" class="tag">#検索</a>
+        </div>
         <p>検索結果ってどうやって決まってるの？アルゴリズムの基本をやさしく解説。</p>
-      </li>
-      <li class="post-item">
-        <h2><a href="posts/random-thoughts.html">とりとめのないメモ</a></h2>
-        <div class="meta">2025年12月5日 ｜ 日常</div>
-        <p>ふと思ったことをメモ。まとまりはないけど、こういうのが一番おもしろい。</p>
-      </li>
-    </ul>
+      </article>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 ログール
+    &copy; 2025 ブローグ
   </footer>
 </body>
 </html>
