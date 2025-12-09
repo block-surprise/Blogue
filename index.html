@@ -50,9 +50,20 @@
       border: none;
     }
     main {
-      max-width: 1100px;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1rem;
+      gap: 2rem;
+    }
+    .content {
+      flex: 3;
+      min-width: 0;
+    }
+    .sidebar {
+      flex: 1;
+      min-width: 250px;
     }
     .breadcrumbs {
       font-size: 0.85rem;
@@ -65,7 +76,7 @@
     }
     .post-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
     .post-item {
@@ -100,19 +111,37 @@
       border-radius: 4px;
       text-decoration: none;
     }
+    .sidebar section {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .sidebar h2 {
+      font-size: 1.1rem;
+      margin-top: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
     footer {
       text-align: center;
       font-size: 0.8rem;
       color: #aaa;
       margin: 4rem 0 2rem;
     }
-    @media (max-width: 600px) {
-      header {
+    @media (max-width: 768px) {
+      main {
         flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        margin-top: 0.5rem;
       }
     }
   </style>
@@ -131,33 +160,47 @@
   </header>
 
   <main>
-    <div class="breadcrumbs">
-      <a href="index.html">ホーム</a> ＞ トップページ
+    <div class="content">
+      <div class="breadcrumbs">
+        <a href="index.html">ホーム</a>
+      </div>
+
+      <section class="post-list">
+        <article class="post-item">
+          <img src="images/minecraft.jpg" alt="ネザーの風景" />
+          <h2><a href="posts/minecraft.html">ネザーでネザライト探し</a></h2>
+          <div class="meta">2025年12月9日 ｜ マイクラ</div>
+          <div class="tags">
+            <a href="tags/minecraft.html" class="tag">#マイクラ</a>
+            <a href="tags/adventure.html" class="tag">#冒険</a>
+          </div>
+          <p>今日はネザーに行って、ネザライトを探してきた記録。ピグリンに注意！</p>
+        </article>
+      </section>
     </div>
 
-    <section class="post-list">
-      <article class="post-item">
-        <img src="images/minecraft.jpg" alt="ネザーの風景" />
-        <h2><a href="posts/minecraft.html">ネザーでネザライト探し</a></h2>
-        <div class="meta">2025年12月9日 ｜ マイクラ</div>
-        <div class="tags">
-          <a href="tags/minecraft.html" class="tag">#マイクラ</a>
-          <a href="tags/adventure.html" class="tag">#冒険</a>
-        </div>
-        <p>今日はネザーに行って、ネザライトを探してきた記録。ピグリンに注意！</p>
-      </article>
-
-      <article class="post-item">
-        <img src="images/google.jpg" alt="検索エンジンのイメージ" />
-        <h2><a href="posts/google-search.html">Google検索の裏側</a></h2>
-        <div class="meta">2025年12月7日 ｜ テクノロジー</div>
-        <div class="tags">
-          <a href="tags/google.html" class="tag">#Google</a>
-          <a href="tags/search.html" class="tag">#検索</a>
-        </div>
-        <p>検索結果ってどうやって決まってるの？アルゴリズムの基本をやさしく解説。</p>
-      </article>
-    </section>
+    <aside class="sidebar">
+      <section>
+        <h2>プロフィール</h2>
+        <p>こんにちは、ブログ主です。マイクラとガジェットが好き。</p>
+      </section>
+      <section>
+        <h2>最近の投稿</h2>
+        <ul>
+          <li><a href="#">Google検索の裏側</a></li>
+          <li><a href="#">マイクラで自動農場を作った話</a></li>
+          <li><a href="#">お気に入りのカフェ紹介</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>人気タグ</h2>
+        <ul>
+          <li><a href="tags/minecraft.html">#マイクラ</a></li>
+          <li><a href="tags/tech.html">#テック</a></li>
+          <li><a href="tags/life.html">#日常</a></li>
+        </ul>
+      </section>
+    </aside>
   </main>
 
   <footer>
@@ -165,3 +208,4 @@
   </footer>
 </body>
 </html>
+
