@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>タグ一覧 - ブローグ</title>
+  <meta name="description" content="ブローグのタグ一覧ページです。" />
+  <meta property="og:title" content="タグ一覧 - ブローグ" />
+  <meta property="og:description" content="ブローグのタグ一覧ページです。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/tags.html" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #3498db;
+      text-decoration: underline;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .tag-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .tag-item {
+      background: white;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin: 4rem 0 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="site-title">ブローグ</a>
+    <nav>
+      <a href="index.html">ホーム</a>
+      <a href="tags.html">タグ</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>タグ一覧</h1>
+    <section class="tag-list">
+      <a href="tags/minecraft.html" class="tag-item">#マイクラ</a>
+      <a href="tags/tech.html" class="tag-item">#テック</a>
+      <a href="tags/life.html" class="tag-item">#日常</a>
+      <a href="tags/adventure.html" class="tag-item">#冒険</a>
+      <a href="tags/design.html" class="tag-item">#デザイン</a>
+      <a href="tags/web.html" class="tag-item">#Web制作</a>
+      <a href="tags/ai.html" class="tag-item">#AI</a>
+      <a href="tags/book.html" class="tag-item">#読書</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 ブローグ
+  </footer>
+</body>
+</html>
