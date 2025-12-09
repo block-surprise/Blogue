@@ -1,0 +1,16 @@
+[
+  {
+    "title": "ネザーでネザライト探し",
+    "description": "ネザーでネザライトを探した冒険の記録。",
+    "url": "/posts/minecraft.html",
+    "tags": ["マイクラ", "冒険"],
+    "date": "2025-12-09"
+  },
+  {
+    "title": "マイクラで自動農場を作った話",
+    "description": "レッドストーンで自動化してみたよ！",
+    "url": "/posts/auto-farm.html",
+    "tags": ["マイクラ", "テック"],
+    "date": "2025-11-28"
+  }
+]
