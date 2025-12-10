@@ -79,6 +79,64 @@
       color: #aaa;
       margin: 4rem 0 2rem;
     }
+
+    .latest, .tags, .about-mini {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.latest ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.latest li {
+  margin-bottom: 0.8rem;
+}
+
+.latest li a {
+  text-decoration: none;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.latest li a:hover {
+  color: #007acc;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background: #e0f0ff;
+  color: #007acc;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover {
+  background: #cce7ff;
+  color: #004f99;
+}
+
+.about-mini a {
+  color: #007acc;
+  text-decoration: none;
+}
+.about-mini a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -102,17 +160,54 @@
       </p>
     </section>
 
-    <section class="featured">
-      <h2>おすすめ記事</h2>
-      <ul>
-        <li><a href="/posts/quiet-routine.html">集中できない日に試したい、静かな作業ルーティン</a></li>
-        <li><a href="/posts/ai-paid-vs-free.html">無料と有料の違いって？AIツールのプラン比較と選び方</a></li>
-      </ul>
-    </section>
-  </main>
+<section class="latest">
+  <h2>最新の記事</h2>
+  <ul id="latest-posts">
+    <!-- JSONから読み込み -->
+  </ul>
+</section>
+
+<section class="tags">
+  <h2>人気のタグ</h2>
+  <div class="tag-list">
+    <a href="/tags/ui.html" class="tag">#UI</a>
+    <a href="/tags/ai.html" class="tag">#AI</a>
+    <a href="/tags/詩的.html" class="tag">#詩的</a>
+    <a href="/tags/firebase.html" class="tag">#Firebase</a>
+  </div>
+</section>
+
+<section class="about-mini">
+  <h2>このブログについて</h2>
+  <p>
+    ブローグは、静けさと好奇心を大切にした個人ブログです。<br />
+    技術と詩のあいだを旅するように、日々の気づきを記録しています。<br />
+    <a href="/about">もっと読む →</a>
+  </p>
+</section>
+
 
   <footer>
     &copy; 2025 ブローグ
   </footer>
+    <script>
+  fetch('/data/posts.json')
+    .then(res => res.json())
+    .then(posts => {
+      const latest = posts
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 3);
+      const ul = document.getElementById('latest-posts');
+      latest.forEach(post => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${post.url}">${post.title}</a>`;
+        ul.appendChild(li);
+      });
+    })
+    .catch(err => {
+      console.error('最新記事の読み込みに失敗しました:', err);
+    });
+</script>
+
 </body>
 </html>
