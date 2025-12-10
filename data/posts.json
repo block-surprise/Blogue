@@ -1,16 +1,16 @@
 [
   {
-    "title": "ネザーでネザライト探し",
-    "description": "ネザーでネザライトを探した冒険の記録。",
-    "url": "/posts/minecraft.html",
-    "tags": ["マイクラ", "冒険"],
-    "date": "2025-12-09"
+    "title": "無料と有料の違いって？AIツールのプラン比較と選び方",
+    "description": "無料と有料の違いとは？",
+    "url": "/posts/ai-paid-vs-free",
+    "tags": ["日常", "AI"],
+    "date": "2025-12-10"
   },
   {
-    "title": "マイクラで自動農場を作った話",
-    "description": "レッドストーンで自動化してみたよ！",
-    "url": "/posts/auto-farm.html",
-    "tags": ["マイクラ", "テック"],
-    "date": "2025-11-28"
+    "title": "AIと暮らす日々：生活が変わった5つの瞬間",
+    "description": "朝のルーティンが変わった",
+    "url": "/posts/ai-life",
+    "tags": ["日常", "AI"],
+    "date": "2025-12-09"
   }
 ]
