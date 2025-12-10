@@ -37,6 +37,13 @@
       height: 200px;
       resize: vertical;
     }
+    #char-count {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+    }
     button {
       width: 100%;
       padding: 0.6rem;
@@ -61,12 +68,20 @@
   <div class="submit-container">
     <h1>記事を投稿</h1>
     <form id="post-form">
-      <input type="text" name="title" placeholder="タイトル" required />
+      <input type="text" name="title" placeholder="タイトル（h1）" required />
       <textarea name="body" placeholder="本文（HTMLでもOK）" required></textarea>
+      <div id="char-count">0文字</div>
       <input type="text" name="tags" placeholder="タグ（カンマ区切り）" />
+      <input type="text" name="related" placeholder="関連記事のURL（カンマ区切り）" />
       <button type="submit">投稿する</button>
     </form>
     <div id="message"></div>
+    
+    <p style="margin-top: 2rem; font-size: 0.9rem; color: #666; line-height: 1.6;">
+  ※ 投稿内容は確認後に公開されます。<br />
+  審査には少しお時間をいただくことがありますので、ご了承ください。
+</p>
+
   </div>
 
   <script type="module">
@@ -112,20 +127,44 @@
       }
     });
 
+    // 文字数カウント
+    const bodyInput = document.querySelector('textarea[name="body"]');
+    const charCount = document.getElementById("char-count");
+
+    bodyInput.addEventListener("input", () => {
+      const length = bodyInput.value.length;
+      charCount.textContent = `${length}文字`;
+      if (length > 3000) {
+        charCount.style.color = "crimson";
+        charCount.textContent += "（上限3000文字を超えています）";
+      } else {
+        charCount.style.color = "#666";
+      }
+    });
+
+    // 投稿処理
     document.getElementById("post-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const title = e.target.title.value.trim();
       const body = e.target.body.value.trim();
       const tags = e.target.tags.value.split(",").map(tag => tag.trim()).filter(tag => tag);
+      const related = e.target.related.value.split(",").map(url => url.trim()).filter(url => url);
       const message = document.getElementById("message");
 
       if (!currentUser) return;
+
+      if (body.length > 3000) {
+        message.textContent = "本文が長すぎます（3000文字以内にしてください）";
+        message.style.color = "crimson";
+        return;
+      }
 
       try {
         await addDoc(collection(db, "posts_pending"), {
           title,
           body,
           tags,
+          related,
           author: nickname,
           uid: currentUser.uid,
           date: serverTimestamp(),
@@ -134,6 +173,8 @@
         message.textContent = "投稿が送信されました！確認後に公開されます。";
         message.style.color = "green";
         e.target.reset();
+        charCount.textContent = "0文字";
+        charCount.style.color = "#666";
       } catch (error) {
         message.textContent = "エラー: " + error.message;
         message.style.color = "crimson";
