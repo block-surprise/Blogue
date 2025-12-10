@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>記事詳細 - ブローグ</title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ここに祐斗さんのCSSをそのまま貼り付けてOK！ */
+    /* 省略（前のスタイルをそのまま使ってください） */
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="site-title">ブローグ</a>
+    <nav>
+      <a href="../index.html">ホーム</a>
+      <a href="../tags/">タグ</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content">
+      <div class="breadcrumbs">
+        <a href="/">ホーム</a> ＞ <span id="breadcrumb-title">記事</span>
+      </div>
+
+      <article>
+        <h1 id="title">読み込み中...</h1>
+        <div class="meta" id="meta"></div>
+        <img id="cover" style="display:none;" />
+        <div class="tags" id="tags"></div>
+        <section class="toc" id="toc" style="display:none;"></section>
+        <div class="body" id="body"></div>
+        <div class="related-box" id="related" style="display:none;"></div>
+        <div class="share-buttons" id="share"></div>
+        <div class="author-box" id="author"></div>
+      </article>
+    </div>
+
+    <aside class="sidebar">
+      <section>
+        <h2>プロフィール</h2>
+        <p>こんにちは、ブローグ管理人です。AIと詩的なUIが好きな水の精霊🫧</p>
+      </section>
+      <section>
+        <h2>最近の投稿</h2>
+        <ul>
+          <li><a href="ai-paid-vs-free.html">無料と有料の違いって？AIツールのプラン比較</a></li>
+          <li><a href="ai-tools.html">AIツールを使いこなすための5つの視点</a></li>
+          <li><a href="ai-life.html">AIと暮らす日々：生活が変わった5つの瞬間</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>人気タグ</h2>
+        <ul>
+          <li><a href="../tags/ai.html">#AI</a></li>
+          <li><a href="../tags/tech.html">#テック</a></li>
+          <li><a href="../tags/tools.html">#ツール</a></li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> ブローグ</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZwl7MJrNJD2qU7bkATpZ2DVt0cjLb07s",
+      authDomain: "blogue-9c04d.firebaseapp.com",
+      projectId: "blogue-9c04d",
+      storageBucket: "blogue-9c04d.firebasestorage.app",
+      messagingSenderId: "330012087470",
+      appId: "1:330012087470:web:afe058423a9bcf98bf493f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    if (!id) {
+      document.getElementById("title").textContent = "記事IDが指定されていません。";
+      throw new Error("No ID");
+    }
+
+    const postRef = doc(db, "posts", id);
+    getDoc(postRef).then((snap) => {
+      if (!snap.exists()) {
+        document.getElementById("title").textContent = "記事が見つかりませんでした。";
+        return;
+      }
+
+      const data = snap.data();
+      document.title = `${data.title} - ブローグ`;
+      document.querySelector('meta[name="description"]').setAttribute("content", data.description || "");
+      document.querySelector('meta[property="og:title"]').setAttribute("content", `${data.title} - ブローグ`);
+      document.querySelector('meta[property="og:description"]').setAttribute("content", data.description || "");
+      document.querySelector('meta[property="og:image"]').setAttribute("content", data.cover || "");
+      document.querySelector('meta[property="og:url"]').setAttribute("content", location.href);
+
+      document.getElementById("title").textContent = data.title;
+      document.getElementById("breadcrumb-title").textContent = data.title;
+      document.getElementById("meta").textContent = `公開日：${data.date || "不明"}`;
+
+      if (data.cover) {
+        const cover = document.getElementById("cover");
+        cover.src = data.cover;
+        cover.alt = data.title;
+        cover.style.display = "block";
+      }
+
+      if (data.tags?.length) {
+        document.getElementById("tags").innerHTML = data.tags.map(tag =>
+          `<a href="/tags/${tag}.html" class="tag">#${tag}</a>`
+        ).join("");
+      }
+
+      if (data.toc) {
+        const toc = document.getElementById("toc");
+        toc.innerHTML = `<h2>目次</h2>${data.toc}`;
+        toc.style.display = "block";
+      }
+
+      document.getElementById("body").innerHTML = data.body;
+
+      if (data.related?.length) {
+        const related = document.getElementById("related");
+        related.innerHTML = `
+          <p><strong>あわせて読みたい：</strong><br />
+          ${data.related.map(url => `<a href="${url}">▶ ${url}</a><br />`).join("")}
+          </p>`;
+        related.style.display = "block";
+      }
+
+      document.getElementById("author").innerHTML = `
+        <strong>この記事を書いた人：</strong>
+        <p>${data.author || "ブローグ管理人"}</p>
+      `;
+    }).catch((err) => {
+      console.error("読み込みエラー:", err);
+      document.getElementById("title").textContent = "記事の読み込み中にエラーが発生しました。";
+    });
+  </script>
+</body>
+</html>
