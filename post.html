@@ -57,7 +57,12 @@
     const id = params.get("id");
 
     const postRef = doc(db, "posts", id);
-    const postSnap = await getDoc(postRef);
+    const pendingRef = doc(db, "posts_pending", id);
+
+    let postSnap = await getDoc(postRef);
+    if (!postSnap.exists()) {
+      postSnap = await getDoc(pendingRef);
+    }
 
     if (postSnap.exists()) {
       const data = postSnap.data();
