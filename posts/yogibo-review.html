@@ -114,13 +114,14 @@ nav a {
   text-decoration: none;
 }
 
+/* main要素を中央寄せし、最大幅と余白を調整 */
 main {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  gap: 2rem;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  max-width: 1600px !important; /* 最大幅を1600pxに拡大！ */
+  margin: 2rem auto !important; /* 中央寄せを維持 */
+  padding: 0 0.5rem !important; /* 左右の余白（パディング）を0.5remに最小化！ */
+  gap: 2rem !important;
 }
 .content {
   flex: 3;
