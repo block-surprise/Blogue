@@ -190,24 +190,35 @@
   <footer>
     &copy; 2025 ブローグ
   </footer>
-    <script>
-  fetch('/data/posts.json')
-    .then(res => res.json())
-    .then(posts => {
-      const latest = posts
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0, 3);
-      const ul = document.getElementById('latest-posts');
-      latest.forEach(post => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="${post.url}">${post.title}</a>`;
-        ul.appendChild(li);
-      });
-    })
-    .catch(err => {
-      console.error('最新記事の読み込みに失敗しました:', err);
+<script>
+  Promise.all([
+    fetch('/data/posts.json').then(res => res.json()),
+    fetch('/data/crafters.json').then(res => res.json())
+  ])
+  .then(([mainPosts, craftersPosts]) => {
+    const allPosts = [...mainPosts, ...craftersPosts];
+    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latest = allPosts.slice(0, 3);
+
+    const ul = document.getElementById('latest-posts');
+    ul.innerHTML = '';
+
+    latest.forEach(post => {
+      const sourceLabel = post.source === 'クラフターズノート'
+        ? `<span style="font-size:0.75rem; color:#888;">（クラフターズノート）</span>`
+        : '';
+
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${post.url}" target="_blank" rel="noopener">${post.title}</a> ${sourceLabel}`;
+      ul.appendChild(li);
     });
+  })
+  .catch(err => {
+    console.error('最新記事の読み込みに失敗しました:', err);
+    document.getElementById('latest-posts').innerHTML = '<li>読み込みに失敗しました。</li>';
+  });
 </script>
+
 
 </body>
 </html>
