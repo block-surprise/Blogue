@@ -116,31 +116,60 @@
 
     <h1>#マイクラ の記事一覧</h1>
 
-    <section class="post-list">
-      <article class="post-item">
-        <h2><a href="../posts/minecraft.html">ネザーでネザライト探し</a></h2>
-        <div class="meta">2025年12月9日 ｜ マイクラ</div>
-        <div class="tags">
-          <a href="minecraft.html" class="tag">#マイクラ</a>
-          <a href="adventure.html" class="tag">#冒険</a>
-        </div>
-        <p>今日はネザーに行って、ネザライトを探してきた記録。ピグリンに注意！</p>
-      </article>
-
-      <article class="post-item">
-        <h2><a href="../posts/auto-farm.html">マイクラで自動農場を作った話</a></h2>
-        <div class="meta">2025年11月28日 ｜ マイクラ</div>
-        <div class="tags">
-          <a href="minecraft.html" class="tag">#マイクラ</a>
-          <a href="tech.html" class="tag">#テック</a>
-        </div>
-        <p>レッドストーンと観察者ブロックを使って、自動で作物が収穫できる農場を作ってみたよ！</p>
-      </article>
+    <section class="post-list" id="post-list">
+      <p>読み込み中...</p>
     </section>
   </main>
 
   <footer>
     &copy; 2025 ブローグ
   </footer>
+
+  <script>
+    const formatDate = (iso) => {
+      const d = new Date(iso);
+      return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+    };
+
+    Promise.all([
+      fetch('/posts.json').then(res => res.json()),
+      fetch('/data/crafters.json').then(res => res.json())
+    ])
+    .then(([mainPosts, craftersPosts]) => {
+      const allPosts = [...mainPosts, ...craftersPosts];
+      const filtered = allPosts.filter(post => post.tags.includes('マイクラ'));
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      const container = document.getElementById('post-list');
+      container.innerHTML = '';
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p>このタグの記事はまだありません。</p>';
+        return;
+      }
+
+      filtered.forEach(post => {
+        const sourceLabel = post.source === 'クラフターズノート'
+          ? `<span style="font-size:0.75rem; color:#888;">（クラフターズノート）</span>`
+          : '';
+
+        const article = document.createElement('article');
+        article.className = 'post-item';
+        article.innerHTML = `
+          <h2><a href="${post.url}" target="_blank" rel="noopener">${post.title}</a> ${sourceLabel}</h2>
+          <div class="meta">${formatDate(post.date)} ｜ ${post.tags.join('、')}</div>
+          <div class="tags">
+            ${post.tags.map(tag => `<a href="${tag.toLowerCase()}.html" class="tag">#${tag}</a>`).join('')}
+          </div>
+          <p>${post.description}</p>
+        `;
+        container.appendChild(article);
+      });
+    })
+    .catch(err => {
+      console.error('記事の読み込みに失敗しました:', err);
+      document.getElementById('post-list').innerHTML = '<p>読み込みに失敗しました。</p>';
+    });
+  </script>
 </body>
 </html>
