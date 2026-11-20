@@ -1,67 +1,99 @@
 [
   {
+    "title": "Muse（ミューズ）完全ガイド｜MetaのAIエージェントの使い方・できること・始め方",
+    "description": "MetaのAIエージェント「Muse」の使い方を徹底解説。できること、始め方、招待コード、頼み方のコツまで",
+    "url": "/posts/muse-guide",
+    "thumbnail": "https://blogue.ad-hub.f5.si/og-image.jpg",
+    "tags": [
+      "AI",
+      "ツール"
+    ],
+    "date": "2026-11-20"
+  },
+  {
     "title": "独自ドメインでメールアドレスを作る方法｜初心者でもできる設定ガイド",
     "description": "独自ドメインメールのメリットと活用シーンを解説",
     "url": "/posts/domain-email-guide",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/domain-email-guide.jpg",
-    "tags": ["メール","ドメイン"],
+    "tags": [
+      "メール",
+      "ドメイン"
+    ],
     "date": "2025-12-13"
   },
- {
+  {
     "title": "ドメインって何？初心者でもわかる取得・管理・選び方のすべて",
     "description": "ドメイン取得の流れ・おすすめの取得サービス比較を解説",
     "url": "/posts/domain-guide",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/domain-guide.jpg",
-    "tags": ["Web","ツール","ドメイン"],
+    "tags": [
+      "Web",
+      "ツール",
+      "ドメイン"
+    ],
     "date": "2025-12-13"
   },
-    {
+  {
     "title": "レノボのパソコンってどう？選び方とおすすめモデル、実際の評判まで",
     "description": "シリーズ徹底解説：ThinkPad / IdeaPad / Yoga / Legion",
     "url": "/posts/lenovo-pc-guide",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/lenovo-laptop.jpg",
-    "tags": ["生産性"],
+    "tags": [
+      "生産性"
+    ],
     "date": "2025-12-13"
   },
-{
+  {
     "title": "AIと話す英会話。アプリ『Speak』で広がる学びの選択肢",
     "description": "Speakってどんなアプリ？",
     "url": "/posts/speak-ai-english",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/ai-talk.jpg",
-    "tags": ["AI"],
+    "tags": [
+      "AI"
+    ],
     "date": "2025-12-12"
   },
   {
-
     "title": "切って、つないで、伝える。無料で始める動画編集ツールとその使い方",
     "description": "無料で始める動画編集と選ぶときの視点",
     "url": "/posts/video-edit-tools",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/video-edit.jpg",
-    "tags": ["ツール","Web"],
+    "tags": [
+      "ツール",
+      "Web"
+    ],
     "date": "2025-12-12"
   },
-   {
+  {
     "title": "墨は落ちない、と思ってた。",
     "description": "泡が連れていった",
     "url": "/posts/sumi-bubble-clean",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/sumi.jpg",
-    "tags": ["日常"],
+    "tags": [
+      "日常"
+    ],
     "date": "2025-12-11"
   },
-     {
+  {
     "title": "沈み込む静けさ。Yogiboで変わった作業と休憩の境界線",
     "description": "Yogiboとの出会い",
     "url": "/posts/yogibo-review",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/yogibo.jpg",
-    "tags": ["日常", "デザイン"],
+    "tags": [
+      "日常",
+      "デザイン"
+    ],
     "date": "2025-12-11"
   },
-   {
+  {
     "title": "夜中でもカチカチしない。静音マウスで作業がやさしくなる話",
     "description": "ロジクール M590を使ってみた感想",
     "url": "/posts/silent-mouse-m590",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/mouse-m590.jpg",
-    "tags": ["日常", "デザイン"],
+    "tags": [
+      "日常",
+      "デザイン"
+    ],
     "date": "2025-12-11"
   },
   {
@@ -69,7 +101,11 @@
     "description": "静かな作業ルーティン5選",
     "url": "/posts/quiet-routine",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/quiet-routine.jpg",
-    "tags": ["日常", "勉強","生産性"],
+    "tags": [
+      "日常",
+      "勉強",
+      "生産性"
+    ],
     "date": "2025-12-11"
   },
   {
@@ -77,7 +113,11 @@
     "description": "無料と有料の違いとは？",
     "url": "/posts/ai-paid-vs-free",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/ai-plans.jpg",
-    "tags": ["AI", "ツール","プラン比較"],
+    "tags": [
+      "AI",
+      "ツール",
+      "プラン比較"
+    ],
     "date": "2025-12-10"
   },
   {
@@ -85,7 +125,11 @@
     "description": "AIツールの選び方",
     "url": "/posts/ai-tools",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/ai-tools.jpg",
-    "tags": ["日常", "AI","生産性"],
+    "tags": [
+      "日常",
+      "AI",
+      "生産性"
+    ],
     "date": "2025-12-09"
   },
   {
@@ -93,9 +137,11 @@
     "description": "朝のルーティンが変わった",
     "url": "/posts/ai-life",
     "thumbnail": "https://blogue.ad-hub.f5.si/images/ai-life.jpg",
-    "tags": ["日常", "AI","テック"],
+    "tags": [
+      "日常",
+      "AI",
+      "テック"
+    ],
     "date": "2025-12-09"
   }
 ]
-
-
