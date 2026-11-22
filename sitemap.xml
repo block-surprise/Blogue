@@ -138,5 +138,29 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-muse-daily</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-muse-jidouka</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-rakuten-room</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-amazon-matome</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-yurufuwa-app</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://blogue.ad-hub.f5.si/posts/pr-note-nandemo</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
 </urlset>
 
